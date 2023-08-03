@@ -4,10 +4,11 @@ const handleHelloWord = (req, res) => {
     return res.render("home.ejs");
 }
 
-const handleUserPage = (req, res) => {
+const handleUserPage = async (req, res) => {
     //model => get data from database
 
-    return res.render("user.ejs");
+    let userList = await userService.getUserLish();
+    return res.render("user.ejs", { userList });
 }
 
 const handleCreateNewUser = (req, res) => {
@@ -16,7 +17,7 @@ const handleCreateNewUser = (req, res) => {
     let username = req.body.username;
 
     // userService.createNewUser(email, password, username);
-    userService.getUserLish();
+
 
     return res.send("handleCreateNewUser");
 }
