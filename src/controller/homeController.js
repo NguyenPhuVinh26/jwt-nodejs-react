@@ -1,5 +1,9 @@
 import mysql from 'mysql2';
 
+import bcrypt from 'bcryptjs';
+const salt = bcrypt.genSaltSync(10);
+
+
 // create the connection to database
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -21,6 +25,8 @@ const handleCreateNewUser = (req, res) => {
     let email = req.body.email;
     let password = req.body.password;
     let username = req.body.username;
+
+    var hashPassword = bcrypt.hashSync("B4c0/\/", salt);
 
 
     connection.query(
